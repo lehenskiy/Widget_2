@@ -14,12 +14,12 @@ View::View(QWidget *parent) : QWidget(parent), ui(new Ui::Widget) {
         throw std::bad_alloc();
     }
 
-    connect(ui->calcButton, SIGNAL(clicked()),
-            edit1, SLOT(add_one()));
-    connect(edit1, SIGNAL(tick_signal()),
-            edit2, SLOT(add_one()));
-    connect(ui->exitButton, SIGNAL(clicked()),
-            this, SLOT(close()));
+    connect(calcButton, &QPushButton::clicked,
+            edit1, &Counter::add_one);
+    connect(edit1, &Counter::tick_signal,
+            edit2, &Counter::add_one);
+    connect(exitButton, &QPushButton::clicked,
+            this, &View::close);
 }
 
 View::~View() {
